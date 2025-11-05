@@ -1,17 +1,22 @@
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter, RouterOutlet } from '@angular/router';
+import { routes } from './app/app.route';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports:[ RouterOutlet ],
   template: `
-    <h1>Hello from {{ name }}!</h1>
-    <a target="_blank" href="https://angular.dev/overview">
-      Learn more about Angular
-    </a>
+    <router-outlet></router-outlet>
   `,
 })
 export class App {
   name = 'Angular';
 }
 
-bootstrapApplication(App);
+bootstrapApplication(App, {
+  providers:[
+    provideRouter(routes)
+  ]
+});
